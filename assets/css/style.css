@@ -1,0 +1,24 @@
+
+.jumbotron {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: lightcyan;
+
+}
+
+body {
+  background: url(../images/theofficeimageimdb_c0-88-900-612_s885x516.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  overflow: hidden;
+
+}
+
+.scoreContainer {
+    width: 260px;
+    padding-left: 10px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color:lightcyan;
+    position: relative;
+    bottom: -700px;
+}
+
