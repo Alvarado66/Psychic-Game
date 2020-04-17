@@ -13,18 +13,41 @@
 // if out of attempts, 
     // RESET with a new word.
 
-var Characters=["Jim","Pam","Dwight","Michael","Creed","Kevin","Oscar","Meredith","Phyllis","Stanley","Andy","Angela"]
+const Characters=["Jim","Pam","Dwight","Michael","Creed","Kevin","Oscar","Meredith","Phyllis","Stanley","Andy","Angela"]
+let userWord = myWord(Characters);
+var playerGuess =[] 
+ 
 
-
-var myWord = function () {
+ function myWord(Characters) {
     return Characters[Math.floor(Math.random() * Characters.length)];
     
 }
-console.log(myWord())
-
+console.log(userWord)
+ 
+for (var i = 0; i < userWord.length; i++) {
+    playerGuess[i] = "_"
     
-
-document.onkeydown = function (event) {
-    console.log(event.key)
 }
 
+document.onkeydown = function (event) {
+    
+    console.log(playerGuess) 
+
+    for (let i=0; i < userWord.length; i++) {
+
+        if (event.key.toLowerCase() === userWord.toLowerCase().charAt(i)) {
+            playerGuess.splice(i, 1, event.key)
+            console.log("You've guessed correctly!")
+        } 
+        else {
+            console.log("Sorry, Please try again!")
+        } 
+    }
+    // return playerGuess
+}
+
+
+
+
+
+console.log(playerGuess)
