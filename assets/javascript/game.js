@@ -1,53 +1,54 @@
-// If player presses key, 
-    // it STARTS THE GAME.
+// This style/layout was obtained from "https://github.com/Kbowen200247/Psychic-Game/blob/master/assets/javascript/game.js"
 
-// if player presses CORRECT KEY, 
-    // appear on the screen.
+const allLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+// These are my global variables 
+let userWins = 0;
+let userLosses = 0;
+let remainingGuesses = 9;
+let userChoice = [];
 
-// if player guesses INCORRECTLY, 
-    // subract an attempt. (5 attempts per word) and STORE IT.
-
-// if player guesses the word CORRECTLY, 
-    // alert they won.
-
-// if out of attempts, 
-    // RESET with a new word.
-
-const Characters=["Jim","Pam","Dwight","Michael","Creed","Kevin","Oscar","Meredith","Phyllis","Stanley","Andy","Angela"]
-let userWord = myWord(Characters);
-var playerGuess =[] 
- 
-
- function myWord(Characters) {
-    return Characters[Math.floor(Math.random() * Characters.length)];
-    
+// This creates a random letter that is to be guessed by the user
+function computerChoice (allLetters) {
+    allLetters[Math.floor(Math.random() * allLetters.length)];
 }
-console.log(userWord)
- 
-for (var i = 0; i < userWord.length; i++) {
-    playerGuess[i] = "_"
-    
+// This is supposed to count how many guesses are left for the user
+function guessCounter () {
+    document.getElementById(remainingGuesses).innerHTML = "Guesses Left: " + remainingGuesses;
+
 }
-
-document.onkeydown = function (event) {
-    
-    console.log(playerGuess) 
-
-    for (let i=0; i < userWord.length; i++) {
-
-        if (event.key.toLowerCase() === userWord.toLowerCase().charAt(i)) {
-            playerGuess.splice(i, 1, event.key)
-            console.log("You've guessed correctly!")
-        } 
-        else {
-            console.log("Sorry, Please try again!")
-        } 
+// This makes aware to the user of guesses already tried
+function guessesUsed () {
+    document.getElementById(userGuesses).innerHTML = "You've already used: " + userChoice.join(' ');
+}
+// this calls the function called guessCounter
+guessCounter ();
+// This resets the hidden letter at random again
+let reset = function() {
+    remainingGuesses = 10;
+    userChoice = [];
+    function computerChoice (allLetters) {
+        allLetters[Math.floor(Math.random() * allLetters.length)];
     }
-    // return playerGuess
 }
+// When the key is pressed down it will activate the event and take any input to lowercase.
+document.onkeydown = function(event) {
+    remainingGuesses--;
 
+    let userInput = String.fromCharCode(event.keyCode).toLowerCase();
 
+    userChoice.push(userInput);
+    guessCounter();
+    guessesUsed();
 
+    if (userInput === computerChoice) {
+        userWins++;
+        document.getElementById("numWins").innerHTML = "Wins: " + userWins;
+        reset();
+    }
 
-
-console.log(playerGuess)
+    else if (remainingGuesses === 0) {
+        userLosses++;
+        document.getElementById("numLosses").innerHTML = "Losses: " + userLosses;
+        reset();
+    }
+}
