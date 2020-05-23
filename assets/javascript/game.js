@@ -7,18 +7,20 @@ let userLosses = 0;
 let remainingGuesses = 9;
 let userChoice = [];
 
+
 // This creates a random letter that is to be guessed by the user
 function computerChoice (allLetters) {
     allLetters[Math.floor(Math.random() * allLetters.length)];
 }
+
 // This is supposed to count how many guesses are left for the user
 function guessCounter () {
-    document.getElementById(remainingGuesses).innerHTML = "Guesses Left: " + remainingGuesses;
+    document.querySelector('#guessesLeft').innerHTML = " Guesses Left: " + remainingGuesses;
 
 }
 // This makes aware to the user of guesses already tried
 function guessesUsed () {
-    document.getElementById(userGuesses).innerHTML = "You've already used: " + userChoice.join(' ');
+    document.getElementById("userGuesses").innerHTML = "You've already used: " + userChoice.join(' ');
 }
 // this calls the function called guessCounter
 guessCounter ();
